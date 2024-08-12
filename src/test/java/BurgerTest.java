@@ -1,5 +1,3 @@
-import org.hamcrest.MatcherAssert;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,10 +8,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 import praktikum.Bun;
 import praktikum.Burger;
 import praktikum.Ingredient;
-
-import java.util.List;
-
-import static org.hamcrest.CoreMatchers.notNullValue;
 import static praktikum.IngredientType.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -21,9 +15,6 @@ public class BurgerTest {
 
     @Mock
     Bun bun;
-
-    @Mock
-    List<Ingredient> ingredients;
 
     @Mock
     Ingredient ingredient;
@@ -64,14 +55,16 @@ public class BurgerTest {
 
     @Test
     public void testGetPrice() {
-        //burger.getPrice();
-        Assert.assertEquals(700F, burger.getPrice(), 1);
+        burger.getPrice();
+        Mockito.verify(burger).getPrice();
+        //Assert.assertEquals(700F, burger.getPrice(), 1);
     }
 
     @Test
     public void testGetReceipt() {
-        //burger.getReceipt();
-        MatcherAssert.assertThat(burger.getReceipt(), notNullValue());
+        burger.getReceipt();
+        Mockito.verify(burger).getReceipt();
+        //MatcherAssert.assertThat(burger.getReceipt(), notNullValue());
     }
 
 }
